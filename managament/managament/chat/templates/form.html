@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chat
+{% endblock %}
+
+{% block content %}
+<h2>
+    {% if form.instance.pk %}
+    Edit Chat
+    {% else %}
+    Create Chat
+    {% endif %}
+</h2>
+<form method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-warning" type="submit">Submit</button>
+</form>
+<a href="{% url 'chat_list' %}">Back to Chat list</a>
+{% endblock %}

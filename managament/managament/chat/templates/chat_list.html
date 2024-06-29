@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}
+Chat
+{% endblock %}
+
+{% block content %}
+
+<a class="btn btn-primary mb-4" href="{% url 'chat_create' %}">Create Chat</a>
+<div class="container row gap-3">
+    {% for chat in chats %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ chat.photo.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ chat.user.username }}</h5>
+          <p class="card-text">{{ chat.message }}</p>
+          {%if chat.user == user%}
+          <a href="{% url 'chat_update' chat.id %}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'chat_delete' chat.id %}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}
