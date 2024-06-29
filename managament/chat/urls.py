@@ -7,5 +7,5 @@ urlpatterns = [
     path('chat/<int:id>/edit/', views.chat_update, name='chat_update'),
     path('chat/<int:id>/delete/', views.chat_delete, name='chat_delete'),
     path('register/', views.register, name='register'),
-    path('search/', views.search_list, name ='search_list')
+    # path('search/', views.search_list, name ='search_list')
 ]

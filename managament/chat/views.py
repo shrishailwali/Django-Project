@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from  .models import Chat
 from .forms import ChatForm, UserRegistrationForm
-from .forms import SearchForm
+# from .forms import SearchForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -68,11 +68,11 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'form':form})
 
-def search_list(request):
-    form = SearchForm()
-    if 'query' in request.GET:
-        form = SearchForm(request.GET)
-        if form.is_valid():
-            query = form.cleaned_data['query']
-            chats = Chat.objects.filter(name__icontains = query).order_by('created_at')
-    return render(request, 'search_list.html', {'chats':chats})
+# def search_list(request):
+#     form = SearchForm()
+#     if 'query' in request.GET:
+#         form = SearchForm(request.GET)
+#         if form.is_valid():
+#             query = form.cleaned_data['query']
+#             chats = Chat.objects.filter(name__icontains = query).order_by('created_at')
+#     return render(request, 'search_list.html', {'chats':chats})
