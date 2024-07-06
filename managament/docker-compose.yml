@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  wed:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - '8000:8000'
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+
+  rabbitmq:
+    image: cgr.dev/chainguard/rabbitmq:latest
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - rabbitmq_data:/data
+
+volumes:
+  rabbitmq_data:
